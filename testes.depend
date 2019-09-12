@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1567698737 source:c:\users\biazio\documents\testes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1568226612 source:c:\users\biazio\documents\testes\untitled1.c
+	<stdio.h>
+
