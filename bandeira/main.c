@@ -65,11 +65,41 @@ void pintaLozango(Imagem* img) {
 	}
 }
 
+void pintaCirculo (Imagem* img) {
+	Circulo* circulo = newCirculo(3.5 * ESCALA, (img->LI-1)/2, (img->CO-1)/2);
+
+	for (int col=0; col < img->CO; col++) {
+		for (int lin=0; lin < img->LI; lin++) {
+			if ( dentroCirculo(circulo, lin, col) )	{
+				setColor(img, lin, col, azul);	
+			}		
+		}
+	}
+}
+
+void pintaFaixa (Imagem* img) {
+	Circulo* circuloAzul = newCirculo(3.5 * ESCALA, (img->LI-1)/2, (img->CO-1)/2);
+	Circulo* circuloExter = newCirculo(8.5 * ESCALA, 0, (img->CO-1)/2 - (2 * ESCALA));
+	Circulo* circuloInter = newCirculo(8 * ESCALA, 0, (img->CO-1)/2 - (2 * ESCALA));
+	
+	for (int col=0; col < img->CO; col++) {
+		for (int lin=0; lin < img->LI; lin++) {
+			if ( dentroCirculo(circuloAzul, lin, col) && 
+			     dentroCirculo(circuloExter, lin, col) &&
+			     !dentroCirculo(circuloInter, lin, col) ) {
+				setColor(img, lin, col, branco);	
+			}		
+		}
+	}
+}
+
 int main (){
 	Imagem * img;
 	img = newImagem(14 * ESCALA,20 * ESCALA);
 	pintaVerde(img);
 	pintaLozango(img);
+	pintaCirculo(img);
+	pintaFaixa(img);
 	salvaImagem(img, "bandeira.ppm");
 	return 0;
 }
